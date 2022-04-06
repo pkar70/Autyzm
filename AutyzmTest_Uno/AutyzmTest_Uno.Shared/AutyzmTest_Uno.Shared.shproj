@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A969C742-D83C-4052-8079-EC2986D3D317}</ProjectGuid>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.Common.Default.props" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.Common.props" />
+  <PropertyGroup />
+  <Import Project="AutyzmTest_Uno.Shared.projitems" Label="Shared" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.CSharp.targets" />
+  <ItemGroup>
+    <_Globbed_Content Remove="Assets\LargeTile.scale-100.png" />
+    <_Globbed_Content Remove="Assets\LargeTile.scale-200.png" />
+    <_Globbed_Content Remove="Assets\LockScreenLogo.scale-200.png" />
+    <_Globbed_Content Remove="Assets\SmallTile.scale-100.png" />
+    <_Globbed_Content Remove="Assets\SmallTile.scale-200.png" />
+    <_Globbed_Content Remove="Assets\SplashScreen.scale-100.png" />
+    <_Globbed_Content Remove="Assets\SplashScreen.scale-200.png" />
+    <_Globbed_Content Remove="Assets\Square150x150Logo.scale-100.png" />
+    <_Globbed_Content Remove="Assets\Square150x150Logo.scale-200.png" />
+    <_Globbed_Content Remove="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+    <_Globbed_Content Remove="Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
+    <_Globbed_Content Remove="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <_Globbed_Content Remove="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <_Globbed_Content Remove="Assets\Square44x44Logo.scale-100.png" />
+    <_Globbed_Content Remove="Assets\Square44x44Logo.scale-200.png" />
+    <_Globbed_Content Remove="Assets\Square44x44Logo.targetsize-16.png" />
+    <_Globbed_Content Remove="Assets\Square44x44Logo.targetsize-48.png" />
+    <_Globbed_Content Remove="Assets\StoreLogo.scale-100.png" />
+    <_Globbed_Content Remove="Assets\StoreLogo.scale-200.png" />
+    <_Globbed_Content Remove="Assets\Wide310x150Logo.scale-100.png" />
+    <_Globbed_Content Remove="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <_Globbed_PRIResource Remove="Strings\pl\Resources.resw" />
+  </ItemGroup>
+</Project>

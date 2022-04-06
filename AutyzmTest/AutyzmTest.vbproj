@@ -140,7 +140,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
-    <Compile Include="pkarModule.vb" />
+    <Compile Include="pkarModuleWithLib.vb" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -222,6 +222,12 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\pl\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VBlib\VBlib.vbproj">
+      <Project>{229037c5-ad85-4aa0-80cd-d48e46b59082}</Project>
+      <Name>VBlib</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
