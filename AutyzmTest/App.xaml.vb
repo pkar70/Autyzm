@@ -9,7 +9,7 @@
     ''' </summary>
     ''' <param name="e">Details about the launch request and process.</param>
     Protected Overrides Sub OnLaunched(e As Windows.ApplicationModel.Activation.LaunchActivatedEventArgs)
-        Dim RootFrame As Frame = OnLaunchFragment(e.PreviousExecutionState)
+        Dim RootFrame As Frame = OnLaunchFragment()
 
         If e.PrelaunchActivated = False Then
             If RootFrame.Content Is Nothing Then
@@ -47,9 +47,11 @@
     End Sub
 #End Region
 
+#Disable Warning IDE0060 ' Remove unused parameter
     Private Async Function AppServiceLocalCommand(sCommand As String) As Task(Of String)
         Return "NO"
     End Function
+#Enable Warning IDE0060 ' Remove unused parameter
 
     ' RemoteSystems, Timer
     Protected Overrides Async Sub OnBackgroundActivated(args As BackgroundActivatedEventArgs)
@@ -68,7 +70,6 @@
 
     End Sub
 
-
     ' CommandLine, Toasts
     Protected Overrides Async Sub OnActivated(args As IActivatedEventArgs)
         ' to jest m.in. dla Toast i tak dalej?
@@ -80,15 +81,19 @@
             Dim operation As CommandLineActivationOperation = commandLine?.Operation
             Dim strArgs As String = operation?.Arguments
 
+            InitLib(strArgs.Split(" ")) ' mamy command line, próbujemy zrobić z tego string() (.Net Standard 1.4)
+
             If Not String.IsNullOrEmpty(strArgs) Then
                 Await ObsluzCommandLine(strArgs)
                 Window.Current.Close()
                 Return
             End If
+        Else
+            InitLib(Nothing)    ' nie mamy dostępu do commandline (.Net Standard 1.4)
         End If
 
         ' jesli nie cmdline (a np. toast), albo cmdline bez parametrow, to pokazujemy okno
-        Dim rootFrame As Frame = OnLaunchFragment(args.PreviousExecutionState)
+        Dim rootFrame As Frame = OnLaunchFragment()
 
         If args.Kind = ActivationKind.ToastNotification Then
             rootFrame.Navigate(GetType(MainPage))
@@ -98,7 +103,7 @@
 
     End Sub
 
-    Protected Function OnLaunchFragment(aes As ApplicationExecutionState) As Frame
+    Protected Function OnLaunchFragment() As Frame
         Dim mRootFrame As Frame = TryCast(Window.Current.Content, Frame)
 
         ' Do not repeat app initialization when the Window already has content,
@@ -116,6 +121,9 @@
 
             ' Place the frame in the current Window
             Window.Current.Content = mRootFrame
+
+            InitLib(Nothing)
+
         End If
 
         Return mRootFrame

@@ -1,23 +1,25 @@
 ﻿Imports VBlib.MainPage
+Imports vb14 = VBlib.pkarlibmodule14
+
 
 Public NotInheritable Class MainPage
     Inherits Page
 
     Private Async Function SendEmailResult(sResult As String) As Task
-
-        Dim oMsg As Email.EmailMessage = New Windows.ApplicationModel.Email.EmailMessage()
-        oMsg.Subject = VBlib.GetLangString("msgEmailSubject")
-
-        oMsg.Body = sResult
+        Dim oMsg As New Windows.ApplicationModel.Email.EmailMessage With {
+            .Subject = VBlib.GetLangString("msgEmailSubject"),
+            .Body = sResult
+        }
 
         Await Email.EmailManager.ShowComposeNewEmailAsync(oMsg)
 
     End Function
 
+    <CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification:="<Pending>")>
     Private Async Sub uiWynikuj_Click(sender As Object, e As RoutedEventArgs)
         ' sprawdz czy są jakies "0", jesli tak, to stop
         If CzyBrakujeOdpowiedzi() Then
-            Await VBlib.pk.DialogBoxResAsync("msgBrakAnswer")
+            Await vb14.DialogBoxResAsync("msgBrakAnswer")
             uiList.ItemsSource = Nothing
             uiList.ItemsSource = moListPytania
             Return
@@ -26,22 +28,23 @@ Public NotInheritable Class MainPage
         Dim iWynik As Integer = PoliczWynik()
 
         Dim sSummary As String = GetResultSummaryText(iWynik)
-        Await VBlib.pk.DialogBoxAsync(sSummary)
+        Await vb14.DialogBoxAsync(sSummary)
 
         Dim sResult As String = sSummary & GetResultText()
 
         ' wynik do pliku
         SaveResult(sResult)
 
-        If Await VBlib.pk.DialogBoxResYNAsync("msgAskEmail") Then
+        If Await vb14.DialogBoxResYNAsync("msgAskEmail") Then
             Await SendEmailResult(sResult)
         End If
 
     End Sub
 
+    <CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification:="<Pending>")>
     Private Async Sub Page_Loaded(sender As Object, e As RoutedEventArgs)
-        InitLib()
-        Await VBlib.pk.DialogBoxResAsync("msgInfo")
+
+        Await vb14.DialogBoxResAsync("msgInfo")
         StworzPytania()
         uiList.ItemsSource = moListPytania
 

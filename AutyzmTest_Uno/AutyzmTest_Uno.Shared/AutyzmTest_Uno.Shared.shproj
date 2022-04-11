@@ -11,6 +11,9 @@
   <Import Project="AutyzmTest_Uno.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.CSharp.targets" />
   <ItemGroup>
+    <_Globbed_Compile Remove="GlobalSuppressions.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <_Globbed_Content Remove="Assets\LargeTile.scale-100.png" />
     <_Globbed_Content Remove="Assets\LargeTile.scale-200.png" />
     <_Globbed_Content Remove="Assets\LockScreenLogo.scale-200.png" />

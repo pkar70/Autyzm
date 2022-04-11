@@ -4,6 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
+using vb14 = VBlib.pkarlibmodule14;
 
 // z wersji VB, 2022.03.24
 // aktualizacja z VB (po pelniejszym VBlib), 2022.04.06
@@ -23,41 +24,42 @@ namespace AutyzmTest
         private async System.Threading.Tasks.Task SendEmailResult(string sResult)
         {
             Windows.ApplicationModel.Email.EmailMessage oMsg = new Windows.ApplicationModel.Email.EmailMessage();
-            oMsg.Subject = VBlib.pk.GetLangString("msgEmailSubject");
+            oMsg.Subject = vb14.GetLangString("msgEmailSubject");
             oMsg.Body = sResult;
             await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(oMsg);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
         private async void uiWynikuj_Click(object sender, RoutedEventArgs e)
         {
             // sprawdz czy są jakies "0", jesli tak, to stop
             if (VBlib.MainPage.CzyBrakujeOdpowiedzi())
             {
-                await VBlib.pk.DialogBoxResAsync("msgBrakAnswer");
+                await vb14.DialogBoxResAsync("msgBrakAnswer");
                 uiList.ItemsSource = null;
-                uiList.ItemsSource = from c in VBlib.MainPage.moListPytania select c;
+                uiList.ItemsSource = (from c in VBlib.MainPage.moListPytania select c).ToArray();
                 return;
             }
 
             int iWynik = VBlib.MainPage.PoliczWynik();
             string sSummary = VBlib.MainPage.GetResultSummaryText(iWynik);
-            await VBlib.pk.DialogBoxAsync(sSummary);
+            await vb14.DialogBoxAsync(sSummary);
             string sResult = sSummary + VBlib.MainPage.GetResultText();
 
             // wynik do pliku
             VBlib.MainPage.SaveResult(sResult);
-            if (await VBlib.pk.DialogBoxResYNAsync("msgAskEmail"))
+            if (await vb14.DialogBoxResYNAsync("msgAskEmail"))
             {
                 await SendEmailResult(sResult);
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            p.k.InitLib();
-            await VBlib.pk.DialogBoxResAsync("msgInfo");
+            await vb14.DialogBoxResAsync("msgInfo");
             VBlib.MainPage.StworzPytania();
-            uiList.ItemsSource = from c in VBlib.MainPage.moListPytania select c;
+            uiList.ItemsSource = (from c in VBlib.MainPage.moListPytania select c).ToArray();
         }
 
     }

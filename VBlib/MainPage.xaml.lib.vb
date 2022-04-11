@@ -26,9 +26,10 @@ Public Class MainPage
     Public Shared Sub StworzPytania()
         moListPytania.Clear()
         For iLoop As Integer = 1 To 50
-            Dim oNew As Pytanie = New Pytanie
-            oNew.sPytanie = GetLangString("q" & iLoop)
-            oNew.iNumer = iLoop
+            Dim oNew As New Pytanie With {
+                .sPytanie = GetLangString("q" & iLoop),
+                .iNumer = iLoop
+            }
 
             moListPytania.Add(oNew)
         Next
