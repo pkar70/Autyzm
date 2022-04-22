@@ -212,7 +212,7 @@ namespace AutyzmTest
                 string strArgs = operation?.Arguments;
 
 
-                p.k.InitLib(strArgs.Split(' ')); // mamy command line, próbujemy zrobić z tego string() (.Net Standard 1.4)
+                p.k.InitLib(strArgs.Split(' ').ToList()); // mamy command line, próbujemy zrobić z tego string() (.Net Standard 1.4)
 
                 if (!string.IsNullOrEmpty(strArgs))
                 {

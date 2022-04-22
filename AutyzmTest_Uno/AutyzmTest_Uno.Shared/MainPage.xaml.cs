@@ -16,6 +16,9 @@ namespace AutyzmTest
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
+        private VBlib.MainPage inVb = new VBlib.MainPage();
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -33,21 +36,21 @@ namespace AutyzmTest
         private async void uiWynikuj_Click(object sender, RoutedEventArgs e)
         {
             // sprawdz czy są jakies "0", jesli tak, to stop
-            if (VBlib.MainPage.CzyBrakujeOdpowiedzi())
+            if (inVb.CzyBrakujeOdpowiedzi())
             {
                 await vb14.DialogBoxResAsync("msgBrakAnswer");
                 uiList.ItemsSource = null;
-                uiList.ItemsSource = (from c in VBlib.MainPage.moListPytania select c).ToArray();
+                uiList.ItemsSource = (from c in inVb.moListPytania select c).ToArray();
                 return;
             }
 
-            int iWynik = VBlib.MainPage.PoliczWynik();
-            string sSummary = VBlib.MainPage.GetResultSummaryText(iWynik);
+            int iWynik = inVb.PoliczWynik();
+            string sSummary = inVb.GetResultSummaryText(iWynik);
             await vb14.DialogBoxAsync(sSummary);
-            string sResult = sSummary + VBlib.MainPage.GetResultText();
+            string sResult = sSummary + inVb.GetResultText();
 
             // wynik do pliku
-            VBlib.MainPage.SaveResult(sResult);
+            inVb.SaveResult(sResult);
             if (await vb14.DialogBoxResYNAsync("msgAskEmail"))
             {
                 await SendEmailResult(sResult);
@@ -58,8 +61,8 @@ namespace AutyzmTest
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             await vb14.DialogBoxResAsync("msgInfo");
-            VBlib.MainPage.StworzPytania();
-            uiList.ItemsSource = (from c in VBlib.MainPage.moListPytania select c).ToArray();
+            inVb.StworzPytania();
+            uiList.ItemsSource = (from c in inVb.moListPytania select c).ToArray();
         }
 
     }
@@ -82,22 +85,5 @@ namespace AutyzmTest
             throw new NotImplementedException();
         }
     }
-
-    //public partial class KonwersjaKolor : IValueConverter
-    //{
-    //    public object Convert(object value, Type targetType, object parameter, string language)
-    //    {
-    //        double bTemp = (double)value;
-    //        if (bTemp == 0d)
-    //            return new SolidColorBrush(Windows.UI.Colors.Red);
-    //        return new SolidColorBrush(Windows.UI.Colors.Blue);
-    //    }
-
-    //    // ConvertBack is not implemented for a OneWay binding.
-    //    public object ConvertBack(object value, Type targetType, object parameter, string language)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
 
 }
