@@ -1,0 +1,18 @@
+﻿
+
+2022.04.25
+* Android: przywracam wykrzykniki czerwone, bo nie działa czerwony pasek!
+
+2022.04.24
+* prace wedle 'tudusie'
+* Opacity=50% dla nieodpowiedzianych przed sumowaniem, i czerwony kawałek paska po sumowaniu
+
+STORE Android
+
+2022.04 zmiana na Uno 4.2.6, i już działa
+
+2022.03 początek prac Uno - błąd przy zmianie Slider
+
+STORE Microsoft
+
+2021.08 pierwsza wersja

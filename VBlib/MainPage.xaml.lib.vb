@@ -37,18 +37,10 @@ Public Class MainPage
     End Sub
 
     Public Function CzyBrakujeOdpowiedzi() As Boolean
-
-        Dim bBrak As Boolean = False
         For Each oItem As Pytanie In moListPytania
-            If oItem.iOdpowiedz = 0 Then
-                bBrak = True
-                oItem.bError = True
-            Else
-                oItem.bError = False
-            End If
+            If oItem.iOdpowiedz = 0 Then Return True
         Next
-
-        Return bBrak
+        Return False
     End Function
 
     Public Function PoliczWynik() As Integer
@@ -93,7 +85,7 @@ End Class
 Public Class Pytanie
     Public Property sPytanie As String
     Public Property iOdpowiedz As Integer = 0
-    Public Property bError As Boolean = False
+    ' Public Property bError As Boolean = False
     Public Property iNumer As Integer
 End Class
 

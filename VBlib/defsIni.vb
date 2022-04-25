@@ -19,6 +19,7 @@ key=value # remark
 
 [app]
 ; lista z app (bez ustawiania)
+initialMode=false   # zmiana zachowania KonwerterWarning
 ; brak zmiennych w App
 
 [libs]

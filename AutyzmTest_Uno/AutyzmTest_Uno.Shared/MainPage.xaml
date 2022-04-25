@@ -5,12 +5,15 @@
     xmlns:local="using:AutyzmTest"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+    xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:not_win="http://uno.ui/not_win"
+    mc:Ignorable="not_win d"
     Loaded="Page_Loaded">
 
     <UserControl.Resources>
-        <local:KonwersjaVisibility x:Key="KonwersjaVisibility"/>
-        <!--<local:KonwersjaKolor x:Key="KonwersjaKolor"/>-->
+        <local:KonwersjaWarningBrush x:Key="KonwersjaWarningBrush"/>
+        <local:KonwersjaWarningOpacity x:Key="KonwersjaWarningOpacity"/>
+        <local:KonwersjaVisibility x:Key="KonwersjaVisibility" />
     </UserControl.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="5,5,5,5">
@@ -27,7 +30,7 @@
             <!-- wynik -->
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" x:Uid="uiTitle" FontSize="24" HorizontalAlignment="Center" />
+        <TextBlock Grid.Row="0" x:Uid="uiTitle" FontSize="24" HorizontalAlignment="Center" Name="uiTitle" />
         <TextBlock Grid.Row="1" x:Uid="uiOpis" TextWrapping="Wrap" Margin="0,10,0,10" />
 
         <ListView Name="uiList" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
@@ -48,9 +51,9 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{Binding sPytanie, Mode=OneTime }" TextWrapping="Wrap"  />
-                        <TextBlock Grid.Column="1" Text="!!" Foreground="Red" Visibility="{Binding bError, Mode=OneWay, Converter={StaticResource KonwersjaVisibility} }" />
+                        <not_win:TextBlock Grid.Column="1" Text="!!" Foreground="Red" Visibility="{Binding iOdpowiedz, Mode=OneWay, Converter={StaticResource KonwersjaVisibility} }" />
                         <TextBlock Grid.Column="2" x:Uid="uiNie1" />
-                        <Slider Grid.Column="3" Value="{Binding iOdpowiedz, Mode=TwoWay}" Minimum="-2" Maximum="2" SmallChange="1"/>
+                        <Slider Grid.Column="3" Value="{Binding iOdpowiedz, Mode=TwoWay}" Minimum="-2" Maximum="2" SmallChange="1" Opacity="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource KonwersjaWarningOpacity}}" Background="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource KonwersjaWarningBrush}}" />
                         <TextBlock Grid.Column="4" x:Uid="uiTak1" />
                     </Grid>
                 </DataTemplate>
@@ -58,7 +61,7 @@
         </ListView>
 
         <Button x:Uid="uiWynikuj" Grid.Row="3" HorizontalAlignment="Right" Content="Wynikuj" Click="uiWynikuj_Click" Margin="5,10,5,5" />
-        <TextBlock Grid.Row="4" Name="uiWynik" TextWrapping="Wrap" Visibility="Collapsed"  />
+        <!--<TextBlock Grid.Row="4" Name="uiWynik" TextWrapping="Wrap" Visibility="Collapsed"  />-->
 
     </Grid>
 </Page>

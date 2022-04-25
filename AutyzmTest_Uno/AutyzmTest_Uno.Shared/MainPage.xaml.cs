@@ -17,6 +17,8 @@ namespace AutyzmTest
     public sealed partial class MainPage : Page
     {
 
+        // public static Brush backgrnd;  // przekazywanie do konwertera
+
         private VBlib.MainPage inVb = new VBlib.MainPage();
 
         public MainPage()
@@ -40,6 +42,7 @@ namespace AutyzmTest
             {
                 await vb14.DialogBoxResAsync("msgBrakAnswer");
                 uiList.ItemsSource = null;
+                vb14.SetSettingsBool("initialMode", false);
                 uiList.ItemsSource = (from c in inVb.moListPytania select c).ToArray();
                 return;
             }
@@ -61,6 +64,8 @@ namespace AutyzmTest
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             await vb14.DialogBoxResAsync("msgInfo");
+            // backgrnd = uiTitle.ba
+            vb14.SetSettingsBool("initialMode", true);
             inVb.StworzPytania();
             uiList.ItemsSource = (from c in inVb.moListPytania select c).ToArray();
         }
@@ -68,15 +73,20 @@ namespace AutyzmTest
     }
 
 
-    public partial class KonwersjaVisibility : IValueConverter
+    public partial class KonwersjaWarningBrush : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            bool bTemp = System.Convert.ToBoolean(value);
+            // wejście: value = wartość Slidera
+            // SettingsBool("initialMode")
+            // zwraca:  Background
 
-            if (bTemp)
-                return Visibility.Visible;
-            return Visibility.Collapsed;
+            int iVal = System.Convert.ToInt32(value);
+
+            if (iVal == 0 && !vb14.GetSettingsBool("initialMode"))
+                return new SolidColorBrush(Windows.UI.Colors.OrangeRed);
+
+            return new SolidColorBrush(Windows.UI.Colors.Gray);
         }
 
         // ConvertBack is not implemented for a OneWay binding.
@@ -86,4 +96,51 @@ namespace AutyzmTest
         }
     }
 
+    public partial class KonwersjaWarningOpacity : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            // wejście: value = wartość Slidera
+            // SettingsBool("initialMode")
+            // zwraca:  Opacity
+
+            int iVal = System.Convert.ToInt32(value);
+
+            if (iVal == 0 && vb14.GetSettingsBool("initialMode"))
+                //if (iVal == 0)
+                return 0.5;
+
+            return 1;
+        }
+
+        // ConvertBack is not implemented for a OneWay binding.
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public partial class KonwersjaVisibility : IValueConverter
+    {
+        // tylko dla Android, gdzie nie działa Background
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            // wejście: value = wartość Slidera
+            // SettingsBool("initialMode")
+            // zwraca:  Opacity
+
+            int iVal = System.Convert.ToInt32(value);
+
+            //if (iVal == 0 && vb14.GetSettingsBool("initialMode"))
+                return Visibility.Collapsed;
+
+            //return Visibility.Visible;
+        }
+
+        // ConvertBack is not implemented for a OneWay binding.
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
