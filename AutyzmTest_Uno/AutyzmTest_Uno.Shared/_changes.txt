@@ -1,4 +1,8 @@
 ﻿
+STORE UWP
+
+2022.05.25
+* dodanie do VBlib deflang, bez czego nie było w Release GetLang w ogóle!
 
 2022.04.25
 * Android: przywracam wykrzykniki czerwone, bo nie działa czerwony pasek!

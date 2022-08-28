@@ -8,15 +8,15 @@
   IgnorableNamespaces="uap mp uap3">
 
   <Identity
-    Name="19879be7-d5b7-40c4-8e1e-c0b0b85c24ab"
-    Publisher="CN=pkar"
-    Version="10.2203.0.0" />
+    Name="622PKar.Autismtest"
+    Publisher="CN=B2AF14E8-43FD-463C-83BA-4CEC47122EA2"
+    Version="1.2205.1.0" />
 
-  <mp:PhoneIdentity PhoneProductId="fc3c4a19-81f4-4139-824c-de2a308ce581" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="b147c6e1-2f5a-491a-99cd-8155eb71c940" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>AutyzmTest_Uno</DisplayName>
-    <PublisherDisplayName>AutyzmTest_Uno</PublisherDisplayName>
+    <DisplayName>Autism test</DisplayName>
+    <PublisherDisplayName>PKar</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
