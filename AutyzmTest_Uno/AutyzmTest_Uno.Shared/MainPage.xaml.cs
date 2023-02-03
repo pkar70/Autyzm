@@ -50,7 +50,7 @@ namespace AutyzmTest
             int iWynik = inVb.PoliczWynik();
             string sSummary = inVb.GetResultSummaryText(iWynik);
             await vb14.DialogBoxAsync(sSummary);
-            string sResult = sSummary + inVb.GetResultText();
+            string sResult = inVb.GetHeaderText() + sSummary + inVb.GetResultText();
 
             // wynik do pliku
             inVb.SaveResult(sResult);
@@ -72,6 +72,7 @@ namespace AutyzmTest
 
     }
 
+    #region "XAML converters"
 
     public partial class KonwersjaWarningBrush : IValueConverter
     {
@@ -143,4 +144,5 @@ namespace AutyzmTest
             throw new NotImplementedException();
         }
     }
+    #endregion
 }

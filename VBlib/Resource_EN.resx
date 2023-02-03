@@ -346,4 +346,7 @@
   <data name="rYouGot" xml:space="preserve">
     <value>You receive</value>
   </data>
+  <data name="rHeader" xml:space="preserve">
+    <value>Result of Autism Test, done @#DATA#:</value>
+  </data>
 </root>

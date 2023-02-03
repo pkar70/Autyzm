@@ -7,7 +7,7 @@
 	<item>
 		<!-- splash image -->
 		<bitmap
-			android:src="@drawable/splashscreen"
+			android:src="@drawable/assets_splashscreen"
 			android:tileMode="disabled"
 			android:gravity="center" />
 	</item>

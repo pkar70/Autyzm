@@ -19,6 +19,7 @@
     <_Globbed_Content Remove="Assets\LockScreenLogo.scale-200.png" />
     <_Globbed_Content Remove="Assets\SmallTile.scale-100.png" />
     <_Globbed_Content Remove="Assets\SmallTile.scale-200.png" />
+    <_Globbed_Content Remove="Assets\splashscreen.png" />
     <_Globbed_Content Remove="Assets\SplashScreen.scale-100.png" />
     <_Globbed_Content Remove="Assets\SplashScreen.scale-200.png" />
     <_Globbed_Content Remove="Assets\Square150x150Logo.scale-100.png" />

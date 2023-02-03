@@ -348,4 +348,7 @@ niegrzeczne, choć ja nie mam takiego wrażenia.</value>
   <data name="rYouGot" xml:space="preserve">
     <value>Masz</value>
   </data>
+  <data name="rHeader" xml:space="preserve">
+    <value>Wynik testu autyzmu, dnia #DATA#:</value>
+  </data>
 </root>

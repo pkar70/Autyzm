@@ -661,6 +661,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Result of Autism Test, done @#DATA#:.
+        '''</summary>
+        Friend Shared ReadOnly Property rHeader() As String
+            Get
+                Return ResourceManager.GetString("rHeader", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to most probably, you are not autistic.
         '''</summary>
         Friend Shared ReadOnly Property rSpoko() As String

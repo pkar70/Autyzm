@@ -1,14 +1,15 @@
 ﻿
+Imports pkar.DotNetExtensions
+
 Public Class MainPage
 
     Public moListPytania As New List(Of Pytanie)
 
     Public Sub SaveResult(sResult As String)
-        Dim sFile As String = GetLogFileYearly(Date.Now.ToString("yyyy.MM.dd_HH.mm"))
+        Dim sFile As String = msDataLog.GetLogFolderYear
         If sFile = "" Then Return
-
+        sFile = IO.Path.Combine(sFile, Date.Now.ToString("yyyy.MM.dd_HH.mm") & ".txt")
         IO.File.AppendAllText(sFile, sResult)
-
     End Sub
 
     Public Function GetResultText() As String
@@ -79,6 +80,11 @@ Public Class MainPage
         Return sTxt
     End Function
 
+    Public Function GetHeaderText() As String
+        Dim sTxt As String = GetLangString("rHeader")
+        sTxt = sTxt.Replace("#DATA#", Date.Now.ToExifString)
+        Return sTxt & vbCrLf
+    End Function
 
 End Class
 
